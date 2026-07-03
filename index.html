@@ -51,7 +51,7 @@ body::before{
     border-radius:40px;
     padding:70px 40px;
     box-shadow:0 0 60px rgba(212,175,55,.15);
-    animation:fadeIn 1.5s ease;
+    animation:fadeIn 1.2s ease;
 }
 
 @keyframes fadeIn{
@@ -59,15 +59,13 @@ body::before{
     to{opacity:1; transform:translateY(0);}
 }
 
-/* NAME */
 h1{
     font-size:4rem;
     color:#d4af37;
-    margin-bottom:10px;
     font-family:'Cormorant Garamond',serif;
+    margin-bottom:10px;
 }
 
-/* LINE */
 .line{
     width:120px;
     height:2px;
@@ -75,101 +73,50 @@ h1{
     margin:20px auto;
 }
 
-/* SECTION */
 section{
     max-width:900px;
     margin:auto;
-    padding:70px 20px;
+    padding:60px 20px;
     text-align:center;
 }
 
-/* BOX */
 .box{
     background:#111;
     border:1px solid rgba(212,175,55,.3);
     border-radius:25px;
-    padding:40px;
+    padding:35px;
 }
 
-/* INPUTS */
 input,select,textarea{
     width:100%;
-    background:#1a1a1a;
-    color:#fff;
-    border:1px solid rgba(212,175,55,.3);
-    border-radius:15px;
     padding:14px;
     margin:10px 0;
+    background:#1a1a1a;
+    color:white;
+    border:1px solid rgba(212,175,55,.3);
+    border-radius:12px;
 }
 
-/* BUTTON */
 button{
     background:linear-gradient(135deg,#d4af37,#f7e08a);
     border:none;
-    padding:14px 35px;
+    padding:14px 30px;
     border-radius:50px;
     cursor:pointer;
     font-weight:bold;
-    transition:0.3s;
 }
 
-button:hover{
-    transform:scale(1.05);
-}
-
-/* SUCCESS POPUP */
-.success{
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%) scale(0.5);
-    background:rgba(0,0,0,.95);
-    border:1px solid #d4af37;
-    padding:40px;
-    border-radius:25px;
+/* BOTTOM TEXT */
+.bottom-text{
     text-align:center;
-    opacity:0;
-    transition:0.4s;
-    z-index:999;
-}
-
-.success.show{
-    opacity:1;
-    transform:translate(-50%,-50%) scale(1);
-}
-
-.success h2{
+    padding:60px 20px;
     color:#d4af37;
-}
-
-/* SMALL GOLD PARTICLES */
-.particles{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-}
-
-.particle{
-    position:absolute;
-    width:5px;
-    height:5px;
-    background:#d4af37;
-    border-radius:50%;
-    animation:fall 6s linear infinite;
-}
-
-@keyframes fall{
-    0%{transform:translateY(-10vh);opacity:0}
-    10%{opacity:1}
-    100%{transform:translateY(110vh);opacity:0}
+    font-size:1.3rem;
 }
 </style>
 </head>
 
 <body>
-
-<!-- PARTICLES -->
-<div class="particles" id="particles"></div>
 
 <!-- HERO -->
 <section class="hero">
@@ -177,14 +124,11 @@ button:hover{
 
         <h1>جوليان ♥ جورجينا</h1>
 
-        <p>دعوة لحضور حفل زفافنا</p>
+        <p>دعوة لحضور حفل زفاف</p>
 
         <div class="line"></div>
 
-        <p>بكل الحب والفرح ندعوكم لمشاركتنا أجمل ليلة في حياتنا</p>
-
-        <p style="margin-top:15px;">يرجى تأكيد الحضور</p>
-        <p>Please RSVP below</p>
+        <p>بكل الحب ندعوكم لمشاركتنا أجمل لحظات حياتنا</p>
 
     </div>
 </section>
@@ -208,19 +152,17 @@ button:hover{
 
             <input type="text" name="name" placeholder="الاسم الكامل" required>
 
-           <select name="attendance" required>
+            <select name="attendance" required>
+                <option value="">هل ستتمكن من الحضور؟</option>
 
-    <option value="">هل ستتمكن من الحضور؟</option>
+                <option value="yes">
+                    نعم بالتأكيد، سيكون شرفاً لي الحضور
+                </option>
 
-    <option value="yes">
-        نعم بالتأكيد، سيكون شرفاً لي الحضور
-    </option>
-
-    <option value="no">
-        للأسف لن أتمكن من الحضور، مع خالص التمنيات
-    </option>
-
-</select>
+                <option value="no">
+                    للأسف لن أتمكن من الحضور، مع خالص التمنيات
+                </option>
+            </select>
 
             <input type="number" name="guests" placeholder="العدد">
 
@@ -232,26 +174,12 @@ button:hover{
     </div>
 </section>
 
-<!-- SUCCESS -->
-<div class="success" id="successBox">
-    <h2>تم إرسال RSVP 💍</h2>
-    <p>شكراً لكم</p>
+<!-- BOTTOM MESSAGE -->
+<div class="bottom-text">
+    يرجى تأكيد الحضور أدناه
 </div>
 
 <script>
-
-/* PARTICLES */
-const container=document.getElementById("particles");
-
-for(let i=0;i<25;i++){
-    let p=document.createElement("div");
-    p.className="particle";
-    p.style.left=Math.random()*100+"vw";
-    p.style.animationDuration=(4+Math.random()*4)+"s";
-    container.appendChild(p);
-}
-
-/* RSVP SEND TO GOOGLE SHEETS */
 document.getElementById("rsvpForm").addEventListener("submit",function(e){
 e.preventDefault();
 
@@ -267,18 +195,12 @@ method:"POST",
 body:JSON.stringify(data)
 })
 .then(()=>{
-
-document.getElementById("successBox").classList.add("show");
-
-setTimeout(()=>{
-document.getElementById("successBox").classList.remove("show");
-},3000);
-
+alert("تم إرسال RSVP 💍");
 this.reset();
-
 })
-.catch(()=>alert("Error"));
-
+.catch(()=>{
+alert("حدث خطأ");
+});
 });
 </script>
 
