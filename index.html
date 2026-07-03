@@ -8,7 +8,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
 body{
     font-family:'Cairo',sans-serif;
@@ -17,44 +21,19 @@ body{
     overflow-x:hidden;
 }
 
-/* ✨ GOLD PARTICLES */
-.particles{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    overflow:hidden;
-    z-index:0;
-}
-
-.particle{
-    position:absolute;
-    width:6px;
-    height:6px;
-    background:#d4af37;
-    border-radius:50%;
-    opacity:0.7;
-    animation:fall linear infinite;
-}
-
-@keyframes fall{
-    0%{transform:translateY(-10vh) translateX(0); opacity:0;}
-    10%{opacity:1;}
-    100%{transform:translateY(110vh) translateX(30px); opacity:0;}
-}
-
-/* BACKGROUND GLOW */
+/* ✨ GOLD BACKGROUND */
 body::before{
     content:'';
     position:fixed;
     inset:0;
     background:
-      radial-gradient(circle at 20% 20%, rgba(212,175,55,.12), transparent 35%),
-      radial-gradient(circle at 80% 30%, rgba(212,175,55,.10), transparent 40%),
-      radial-gradient(circle at 50% 80%, rgba(255,215,140,.08), transparent 40%);
+      radial-gradient(circle at 20% 20%, rgba(212,175,55,.12), transparent 40%),
+      radial-gradient(circle at 80% 30%, rgba(212,175,55,.10), transparent 45%),
+      radial-gradient(circle at 50% 80%, rgba(255,215,140,.08), transparent 45%);
     pointer-events:none;
-    z-index:0;
 }
 
+/* HERO */
 .hero{
     min-height:100vh;
     display:flex;
@@ -62,14 +41,14 @@ body::before{
     align-items:center;
     text-align:center;
     padding:30px;
-    position:relative;
-    z-index:2;
     background:
       linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
       url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=2000&q=80');
     background-size:cover;
+    background-position:center;
 }
 
+/* GLASS CARD */
 .card{
     max-width:900px;
     background:rgba(0,0,0,.45);
@@ -80,14 +59,20 @@ body::before{
     box-shadow:0 0 60px rgba(212,175,55,.15);
 }
 
+/* NAMES */
 .names{
     font-family:'Cormorant Garamond',serif;
     color:#d4af37;
     font-size:4.5rem;
 }
 
-.subtitle{font-size:1.5rem;margin-top:10px}
+/* SUBTITLE */
+.subtitle{
+    font-size:1.5rem;
+    margin-top:10px;
+}
 
+/* GOLD LINE */
 .gold-line{
     width:120px;
     height:2px;
@@ -101,16 +86,9 @@ section{
     margin:auto;
     padding:80px 20px;
     text-align:center;
-    position:relative;
-    z-index:2;
 }
 
-.section-title{
-    color:#d4af37;
-    font-size:2.3rem;
-    margin-bottom:30px;
-}
-
+/* BOX */
 .box{
     background:#111;
     border:1px solid rgba(212,175,55,.3);
@@ -118,7 +96,7 @@ section{
     padding:40px;
 }
 
-/* FORM */
+/* INPUTS */
 input,select,textarea{
     width:100%;
     background:#1a1a1a;
@@ -129,6 +107,7 @@ input,select,textarea{
     margin:12px 0;
 }
 
+/* BUTTON */
 button{
     background:linear-gradient(135deg,#d4af37,#f7e08a);
     border:none;
@@ -136,18 +115,15 @@ button{
     border-radius:50px;
     cursor:pointer;
     font-weight:bold;
-    transition:0.3s;
 }
 
-button:hover{transform:scale(1.05)}
-
-/* 💌 SUCCESS ANIMATION */
+/* SUCCESS POPUP */
 .success{
     position:fixed;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%) scale(0.5);
-    background:rgba(0,0,0,.9);
+    background:rgba(0,0,0,.95);
     border:1px solid #d4af37;
     padding:40px;
     border-radius:25px;
@@ -164,34 +140,55 @@ button:hover{transform:scale(1.05)}
 
 .success h2{
     color:#d4af37;
-    margin-bottom:10px;
+}
+
+/* PARTICLES */
+.particles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+}
+
+.particle{
+    position:absolute;
+    width:5px;
+    height:5px;
+    background:#d4af37;
+    border-radius:50%;
+    animation:fall 6s linear infinite;
+}
+
+@keyframes fall{
+    0%{transform:translateY(-10vh);opacity:0}
+    10%{opacity:1}
+    100%{transform:translateY(110vh);opacity:0}
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 MUSIC (add your own mp3 if you want) -->
-<audio id="music" autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a6b8f6.mp3?filename=romantic-piano-ambient-110397.mp3">
-</audio>
-
 <!-- ✨ PARTICLES -->
 <div class="particles" id="particles"></div>
 
-<!-- 💌 SUCCESS POPUP -->
+<!-- 💌 SUCCESS -->
 <div class="success" id="successBox">
     <h2>تم إرسال RSVP 💍</h2>
-    <p>شكرًا لكم، تم تسجيل حضوركم بنجاح</p>
+    <p>شكراً لكم</p>
 </div>
 
+<!-- HERO -->
 <section class="hero">
     <div class="card">
+
         <div class="names">جوليان ♥ جورجينا</div>
+
         <div class="subtitle">دعوة لحضور حفل زفاف فاخر</div>
+
         <div class="gold-line"></div>
 
-        <p>بكل الحب والفرح، ندعوكم لحضور أجمل ليلة في حياتنا</p>
+        <p>بكل الحب والفرح ندعوكم لحضور أجمل ليلة في حياتنا</p>
 
         <div class="gold-line"></div>
 
@@ -199,55 +196,60 @@ button:hover{transform:scale(1.05)}
 
         <div class="gold-line"></div>
 
-        <h2 style="color:#d4af37">يرجى تأكيد الحضور أدناه</h2>
+        <h2 style="color:#d4af37;">يرجى تأكيد الحضور أدناه</h2>
         <p>Please RSVP below</p>
+
     </div>
 </section>
 
+<!-- DETAILS -->
 <section>
-<h2 class="section-title">RSVP</h2>
+    <h2 style="color:#d4af37;">تفاصيل الحفل</h2>
+    <div class="box">
+        <p>📅 17 يوليو 2026</p>
+        <p>📍 قاعة نيسان</p>
+    </div>
+</section>
 
-<div class="box">
-<form id="rsvpForm">
+<!-- RSVP -->
+<section>
+    <h2 style="color:#d4af37;">RSVP</h2>
 
-<input type="text" name="name" placeholder="الاسم الكامل" required>
+    <div class="box">
+        <form id="rsvpForm">
 
-<select name="attendance" required>
-<option value="">الحضور؟</option>
-<option value="yes">نعم</option>
-<option value="no">لا</option>
-</select>
+            <input type="text" name="name" placeholder="الاسم الكامل" required>
 
-<input type="number" name="guests" placeholder="العدد">
+            <select name="attendance" required>
+                <option value="">الحضور؟</option>
+                <option value="yes">نعم</option>
+                <option value="no">لا</option>
+            </select>
 
-<textarea name="message" placeholder="رسالة"></textarea>
+            <input type="number" name="guests" placeholder="العدد">
 
-<button type="submit">إرسال</button>
+            <textarea name="message" placeholder="رسالة"></textarea>
 
-</form>
-</div>
+            <button type="submit">إرسال</button>
+
+        </form>
+    </div>
 </section>
 
 <script>
 
-/* ✨ PARTICLES GENERATOR */
-const container = document.getElementById("particles");
+/* PARTICLES */
+const container=document.getElementById("particles");
 
-for(let i=0;i<30;i++){
-    let p=document.createElement("div");
-    p.classList.add("particle");
-    p.style.left=Math.random()*100+"vw";
-    p.style.animationDuration=(5+Math.random()*5)+"s";
-    p.style.opacity=Math.random();
-    container.appendChild(p);
+for(let i=0;i<25;i++){
+let p=document.createElement("div");
+p.className="particle";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(4+Math.random()*4)+"s";
+container.appendChild(p);
 }
 
-/* 🎵 MUSIC AUTOPLAY FIX */
-window.addEventListener("click",()=>{
-    document.getElementById("music").play();
-});
-
-/* 💌 RSVP + GOOGLE SHEETS */
+/* RSVP */
 document.getElementById("rsvpForm").addEventListener("submit",function(e){
 e.preventDefault();
 
@@ -274,6 +276,7 @@ this.reset();
 
 })
 .catch(()=>alert("Error"));
+
 });
 
 </script>
