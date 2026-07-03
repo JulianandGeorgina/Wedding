@@ -177,13 +177,13 @@ button:hover{
 
         <h1>جوليان ♥ جورجينا</h1>
 
-        <p>دعوة لحضور حفل زفاف فاخر</p>
+        <p>دعوة لحضور حفل زفافنا</p>
 
         <div class="line"></div>
 
         <p>بكل الحب والفرح ندعوكم لمشاركتنا أجمل ليلة في حياتنا</p>
 
-        <p style="margin-top:15px;">يرجى تأكيد الحضور أدناه</p>
+        <p style="margin-top:15px;">يرجى تأكيد الحضور</p>
         <p>Please RSVP below</p>
 
     </div>
@@ -208,11 +208,19 @@ button:hover{
 
             <input type="text" name="name" placeholder="الاسم الكامل" required>
 
-            <select name="attendance" required>
-                <option value="">الحضور؟</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
+           <select name="attendance" required>
+
+    <option value="">هل ستتمكن من الحضور؟</option>
+
+    <option value="yes">
+        نعم بالتأكيد، سيكون شرفاً لي الحضور
+    </option>
+
+    <option value="no">
+        للأسف لن أتمكن من الحضور، مع خالص التمنيات
+    </option>
+
+</select>
 
             <input type="number" name="guests" placeholder="العدد">
 
