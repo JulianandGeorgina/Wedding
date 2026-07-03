@@ -5,280 +5,104 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>زفاف جوليان وجورجينا</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
-
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
 body{
-    font-family:'Cairo',sans-serif;
-    background:#050505;
-    color:#fff;
-    overflow-x:hidden;
+    margin:0;
+    font-family:Arial;
+    background:#0b0b0b;
+    color:white;
+    text-align:center;
 }
 
-/* ✨ GOLD BACKGROUND */
-body::before{
-    content:'';
-    position:fixed;
-    inset:0;
-    background:
-      radial-gradient(circle at 20% 20%, rgba(212,175,55,.12), transparent 40%),
-      radial-gradient(circle at 80% 30%, rgba(212,175,55,.10), transparent 45%),
-      radial-gradient(circle at 50% 80%, rgba(255,215,140,.08), transparent 45%);
-    pointer-events:none;
-}
-
-/* HERO */
 .hero{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:30px;
-    background:
-      linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
-      url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=2000&q=80');
-    background-size:cover;
-    background-position:center;
-}
-
-/* GLASS CARD */
-.card{
-    max-width:900px;
-    background:rgba(0,0,0,.45);
-    backdrop-filter:blur(18px);
-    border:1px solid rgba(212,175,55,.35);
-    border-radius:40px;
-    padding:80px 50px;
-    box-shadow:0 0 60px rgba(212,175,55,.15);
-}
-
-/* NAMES */
-.names{
-    font-family:'Cormorant Garamond',serif;
-    color:#d4af37;
-    font-size:4.5rem;
-}
-
-/* SUBTITLE */
-.subtitle{
-    font-size:1.5rem;
-    margin-top:10px;
-}
-
-/* GOLD LINE */
-.gold-line{
-    width:120px;
-    height:2px;
-    background:#d4af37;
-    margin:25px auto;
-}
-
-/* SECTIONS */
-section{
-    max-width:1000px;
-    margin:auto;
     padding:80px 20px;
-    text-align:center;
 }
 
-/* BOX */
+h1{
+    color:#d4af37;
+    font-size:3rem;
+}
+
 .box{
     background:#111;
-    border:1px solid rgba(212,175,55,.3);
-    border-radius:25px;
-    padding:40px;
+    margin:20px auto;
+    padding:20px;
+    max-width:500px;
+    border-radius:20px;
 }
 
-/* INPUTS */
 input,select,textarea{
-    width:100%;
-    background:#1a1a1a;
-    color:#fff;
-    border:1px solid rgba(212,175,55,.3);
-    border-radius:15px;
-    padding:16px;
-    margin:12px 0;
+    width:90%;
+    padding:12px;
+    margin:10px 0;
 }
 
-/* BUTTON */
 button{
-    background:linear-gradient(135deg,#d4af37,#f7e08a);
-    border:none;
-    padding:16px 40px;
-    border-radius:50px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-/* SUCCESS POPUP */
-.success{
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%) scale(0.5);
-    background:rgba(0,0,0,.95);
-    border:1px solid #d4af37;
-    padding:40px;
-    border-radius:25px;
-    text-align:center;
-    opacity:0;
-    transition:0.4s;
-    z-index:999;
-}
-
-.success.show{
-    opacity:1;
-    transform:translate(-50%,-50%) scale(1);
-}
-
-.success h2{
-    color:#d4af37;
-}
-
-/* PARTICLES */
-.particles{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:0;
-}
-
-.particle{
-    position:absolute;
-    width:5px;
-    height:5px;
     background:#d4af37;
-    border-radius:50%;
-    animation:fall 6s linear infinite;
-}
-
-@keyframes fall{
-    0%{transform:translateY(-10vh);opacity:0}
-    10%{opacity:1}
-    100%{transform:translateY(110vh);opacity:0}
+    border:none;
+    padding:12px 30px;
+    cursor:pointer;
 }
 </style>
 </head>
 
 <body>
 
-<!-- ✨ PARTICLES -->
-<div class="particles" id="particles"></div>
+<div class="hero">
 
-<!-- 💌 SUCCESS -->
-<div class="success" id="successBox">
-    <h2>تم إرسال RSVP 💍</h2>
-    <p>شكراً لكم</p>
+<h1>جوليان ♥ جورجينا</h1>
+
+<p>دعوة لحضور حفل زفافنا</p>
+
+<p>يرجى تأكيد الحضور أدناه</p>
+
 </div>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="card">
+<div class="box">
 
-        <div class="names">جوليان ♥ جورجينا</div>
+<form id="rsvpForm">
 
-        <div class="subtitle">دعوة لحضور حفل زفاف فاخر</div>
+<input type="text" name="name" placeholder="الاسم الكامل" required>
 
-        <div class="gold-line"></div>
+<select name="attendance" required>
+<option value="">الحضور؟</option>
+<option value="yes">نعم</option>
+<option value="no">لا</option>
+</select>
 
-        <p>بكل الحب والفرح ندعوكم لحضور أجمل ليلة في حياتنا</p>
+<input type="number" name="guests" placeholder="العدد">
 
-        <div class="gold-line"></div>
+<textarea name="message" placeholder="رسالة"></textarea>
 
-        <p>17 يوليو 2026</p>
+<button type="submit">إرسال</button>
 
-        <div class="gold-line"></div>
+</form>
 
-        <h2 style="color:#d4af37;">يرجى تأكيد الحضور أدناه</h2>
-        <p>Please RSVP below</p>
-
-    </div>
-</section>
-
-<!-- DETAILS -->
-<section>
-    <h2 style="color:#d4af37;">تفاصيل الحفل</h2>
-    <div class="box">
-        <p>📅 17 يوليو 2026</p>
-        <p>📍 قاعة نيسان</p>
-    </div>
-</section>
-
-<!-- RSVP -->
-<section>
-    <h2 style="color:#d4af37;">RSVP</h2>
-
-    <div class="box">
-        <form id="rsvpForm">
-
-            <input type="text" name="name" placeholder="الاسم الكامل" required>
-
-            <select name="attendance" required>
-                <option value="">الحضور؟</option>
-                <option value="yes">نعم</option>
-                <option value="no">لا</option>
-            </select>
-
-            <input type="number" name="guests" placeholder="العدد">
-
-            <textarea name="message" placeholder="رسالة"></textarea>
-
-            <button type="submit">إرسال</button>
-
-        </form>
-    </div>
-</section>
+</div>
 
 <script>
-
-/* PARTICLES */
-const container=document.getElementById("particles");
-
-for(let i=0;i<25;i++){
-let p=document.createElement("div");
-p.className="particle";
-p.style.left=Math.random()*100+"vw";
-p.style.animationDuration=(4+Math.random()*4)+"s";
-container.appendChild(p);
-}
-
-/* RSVP */
-document.getElementById("rsvpForm").addEventListener("submit",function(e){
+document.getElementById("rsvpForm").addEventListener("submit", function(e){
 e.preventDefault();
 
-const data={
-name:this.name.value,
-attendance:this.attendance.value,
-guests:this.guests.value,
-message:this.message.value
+const data = {
+name: this.name.value,
+attendance: this.attendance.value,
+guests: this.guests.value,
+message: this.message.value
 };
 
-fetch("https://script.google.com/macros/s/AKfycbw48ZHqGrzVUqxGNcKG1140RoIQaVt3plZSV48xLFSPyg1DIKq-zXdo3PFrDVzkMeNp/exec",{
-method:"POST",
-body:JSON.stringify(data)
+fetch("https://script.google.com/macros/s/AKfycbw48ZHqGrzVUqxGNcKG1140RoIQaVt3plZSV48xLFSPyg1DIKq-zXdo3PFrDVzkMeNp/exec", {
+method: "POST",
+body: JSON.stringify(data)
 })
-.then(()=>{
-
-document.getElementById("successBox").classList.add("show");
-
-setTimeout(()=>{
-document.getElementById("successBox").classList.remove("show");
-},3000);
-
+.then(() => {
+alert("تم الإرسال بنجاح 💍");
 this.reset();
-
 })
-.catch(()=>alert("Error"));
-
+.catch(() => {
+alert("خطأ، حاول مرة أخرى");
 });
-
+});
 </script>
 
 </body>
