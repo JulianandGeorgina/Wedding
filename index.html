@@ -8,28 +8,51 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
     font-family:'Cairo',sans-serif;
-    background:#080808;
+    background:#050505;
     color:#fff;
     overflow-x:hidden;
 }
 
+/* ✨ GOLD PARTICLES */
+.particles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:0;
+}
+
+.particle{
+    position:absolute;
+    width:6px;
+    height:6px;
+    background:#d4af37;
+    border-radius:50%;
+    opacity:0.7;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    0%{transform:translateY(-10vh) translateX(0); opacity:0;}
+    10%{opacity:1;}
+    100%{transform:translateY(110vh) translateX(30px); opacity:0;}
+}
+
+/* BACKGROUND GLOW */
 body::before{
     content:'';
     position:fixed;
     inset:0;
     background:
-      radial-gradient(circle at 20% 20%, rgba(212,175,55,.08), transparent 30%),
-      radial-gradient(circle at 80% 30%, rgba(212,175,55,.08), transparent 30%),
-      radial-gradient(circle at 50% 80%, rgba(212,175,55,.08), transparent 30%);
+      radial-gradient(circle at 20% 20%, rgba(212,175,55,.12), transparent 35%),
+      radial-gradient(circle at 80% 30%, rgba(212,175,55,.10), transparent 40%),
+      radial-gradient(circle at 50% 80%, rgba(255,215,140,.08), transparent 40%);
     pointer-events:none;
+    z-index:0;
 }
 
 .hero{
@@ -39,190 +62,220 @@ body::before{
     align-items:center;
     text-align:center;
     padding:30px;
+    position:relative;
+    z-index:2;
     background:
-      linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
-      url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1800&q=80');
+      linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
+      url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=2000&q=80');
     background-size:cover;
-    background-position:center;
 }
 
 .card{
-    max-width:850px;
+    max-width:900px;
     background:rgba(0,0,0,.45);
-    backdrop-filter:blur(14px);
-    border:1px solid rgba(212,175,55,.45);
-    border-radius:35px;
-    padding:70px 45px;
-    box-shadow:0 0 40px rgba(212,175,55,.15);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(212,175,55,.35);
+    border-radius:40px;
+    padding:80px 50px;
+    box-shadow:0 0 60px rgba(212,175,55,.15);
 }
 
 .names{
     font-family:'Cormorant Garamond',serif;
     color:#d4af37;
     font-size:4.5rem;
-    margin-bottom:20px;
 }
 
-.subtitle{
-    font-size:1.6rem;
-    margin-bottom:20px;
-}
+.subtitle{font-size:1.5rem;margin-top:10px}
 
 .gold-line{
-    width:130px;
+    width:120px;
     height:2px;
     background:#d4af37;
     margin:25px auto;
 }
 
+/* SECTIONS */
 section{
     max-width:1000px;
     margin:auto;
     padding:80px 20px;
     text-align:center;
+    position:relative;
+    z-index:2;
 }
 
 .section-title{
     color:#d4af37;
-    font-size:2.2rem;
+    font-size:2.3rem;
     margin-bottom:30px;
 }
 
 .box{
     background:#111;
-    border:1px solid rgba(212,175,55,.35);
+    border:1px solid rgba(212,175,55,.3);
     border-radius:25px;
     padding:40px;
 }
 
-input, select, textarea{
+/* FORM */
+input,select,textarea{
     width:100%;
     background:#1a1a1a;
     color:#fff;
-    border:1px solid rgba(212,175,55,.35);
+    border:1px solid rgba(212,175,55,.3);
     border-radius:15px;
     padding:16px;
     margin:12px 0;
-    font-size:1rem;
 }
 
 button{
-    background:#d4af37;
-    color:#000;
+    background:linear-gradient(135deg,#d4af37,#f7e08a);
     border:none;
-    border-radius:50px;
     padding:16px 40px;
-    font-weight:bold;
+    border-radius:50px;
     cursor:pointer;
+    font-weight:bold;
     transition:0.3s;
 }
 
-button:hover{
-    transform:scale(1.05);
+button:hover{transform:scale(1.05)}
+
+/* 💌 SUCCESS ANIMATION */
+.success{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0.5);
+    background:rgba(0,0,0,.9);
+    border:1px solid #d4af37;
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+    opacity:0;
+    transition:0.4s;
+    z-index:999;
 }
 
-footer{
-    text-align:center;
-    padding:40px;
+.success.show{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+}
+
+.success h2{
     color:#d4af37;
+    margin-bottom:10px;
 }
 </style>
 </head>
 
 <body>
 
+<!-- 🎵 MUSIC (add your own mp3 if you want) -->
+<audio id="music" autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a6b8f6.mp3?filename=romantic-piano-ambient-110397.mp3">
+</audio>
+
+<!-- ✨ PARTICLES -->
+<div class="particles" id="particles"></div>
+
+<!-- 💌 SUCCESS POPUP -->
+<div class="success" id="successBox">
+    <h2>تم إرسال RSVP 💍</h2>
+    <p>شكرًا لكم، تم تسجيل حضوركم بنجاح</p>
+</div>
+
 <section class="hero">
     <div class="card">
-
         <div class="names">جوليان ♥ جورجينا</div>
+        <div class="subtitle">دعوة لحضور حفل زفاف فاخر</div>
+        <div class="gold-line"></div>
 
-        <div class="subtitle">دعوة لحضور حفل زفافنا</div>
+        <p>بكل الحب والفرح، ندعوكم لحضور أجمل ليلة في حياتنا</p>
 
         <div class="gold-line"></div>
 
-        <p>
-            بكل حب وفرح، نتشرف بدعوتكم لمشاركتنا أجمل لحظات حياتنا  
-            والاحتفال معنا بيوم زفافنا المميز
-        </p>
+        <p>17 يوليو 2026</p>
 
         <div class="gold-line"></div>
 
-        <p>الجمعة 17 يوليو 2026</p>
-
-        <div class="gold-line"></div>
-
-        <h2 style="color:#d4af37; margin-top:20px;">
-            يرجى تأكيد الحضور أدناه
-        </h2>
-
-        <h3 style="color:#fff; font-weight:300; margin-top:10px;">
-            Please RSVP below
-        </h3>
-
+        <h2 style="color:#d4af37">يرجى تأكيد الحضور أدناه</h2>
+        <p>Please RSVP below</p>
     </div>
 </section>
 
 <section>
-    <h2 class="section-title">تفاصيل الحفل</h2>
-    <div class="box">
-        <p>📅 17 يوليو 2026</p>
-        <p>📍 قاعة نيسان</p>
-    </div>
+<h2 class="section-title">RSVP</h2>
+
+<div class="box">
+<form id="rsvpForm">
+
+<input type="text" name="name" placeholder="الاسم الكامل" required>
+
+<select name="attendance" required>
+<option value="">الحضور؟</option>
+<option value="yes">نعم</option>
+<option value="no">لا</option>
+</select>
+
+<input type="number" name="guests" placeholder="العدد">
+
+<textarea name="message" placeholder="رسالة"></textarea>
+
+<button type="submit">إرسال</button>
+
+</form>
+</div>
 </section>
-
-<section>
-    <h2 class="section-title">تأكيد الحضور</h2>
-
-    <div class="box">
-
-        <form id="rsvpForm">
-
-            <input type="text" name="name" placeholder="الاسم الكامل" required>
-
-            <select name="attendance" required>
-                <option value="">هل ستتمكن من الحضور؟</option>
-                <option value="yes">نعم، سأكون سعيداً بالحضور</option>
-                <option value="no">للأسف، لن أتمكن من الحضور</option>
-            </select>
-
-            <input type="number" name="guests" placeholder="العدد">
-
-            <textarea name="message" rows="4" placeholder="رسالة (اختياري)"></textarea>
-
-            <button type="submit">إرسال تأكيد الحضور</button>
-
-        </form>
-
-    </div>
-</section>
-
-<footer>
-♥ جوليان وجورجينا ♥
-</footer>
 
 <script>
-document.getElementById("rsvpForm").addEventListener("submit", function(e){
-    e.preventDefault();
 
-    const data = {
-        name: this.name.value,
-        attendance: this.attendance.value,
-        guests: this.guests.value,
-        message: this.message.value
-    };
+/* ✨ PARTICLES GENERATOR */
+const container = document.getElementById("particles");
 
-    fetch("https://script.google.com/macros/s/AKfycbw48ZHqGrzVUqxGNcKG1140RoIQaVt3plZSV48xLFSPyg1DIKq-zXdo3PFrDVzkMeNp/exec", {
-        method: "POST",
-        body: JSON.stringify(data)
-    })
-    .then(() => {
-        alert("تم إرسال تأكيد الحضور 💍");
-        this.reset();
-    })
-    .catch(() => {
-        alert("حدث خطأ، حاول مرة أخرى");
-    });
+for(let i=0;i<30;i++){
+    let p=document.createElement("div");
+    p.classList.add("particle");
+    p.style.left=Math.random()*100+"vw";
+    p.style.animationDuration=(5+Math.random()*5)+"s";
+    p.style.opacity=Math.random();
+    container.appendChild(p);
+}
+
+/* 🎵 MUSIC AUTOPLAY FIX */
+window.addEventListener("click",()=>{
+    document.getElementById("music").play();
 });
+
+/* 💌 RSVP + GOOGLE SHEETS */
+document.getElementById("rsvpForm").addEventListener("submit",function(e){
+e.preventDefault();
+
+const data={
+name:this.name.value,
+attendance:this.attendance.value,
+guests:this.guests.value,
+message:this.message.value
+};
+
+fetch("https://script.google.com/macros/s/AKfycbw48ZHqGrzVUqxGNcKG1140RoIQaVt3plZSV48xLFSPyg1DIKq-zXdo3PFrDVzkMeNp/exec",{
+method:"POST",
+body:JSON.stringify(data)
+})
+.then(()=>{
+
+document.getElementById("successBox").classList.add("show");
+
+setTimeout(()=>{
+document.getElementById("successBox").classList.remove("show");
+},3000);
+
+this.reset();
+
+})
+.catch(()=>alert("Error"));
+});
+
 </script>
 
 </body>
