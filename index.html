@@ -1,0 +1,286 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>زفاف جوليان وجورجينا</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Cairo',sans-serif;
+    background:#080808;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(212,175,55,.08), transparent 30%),
+      radial-gradient(circle at 80% 30%, rgba(212,175,55,.08), transparent 30%),
+      radial-gradient(circle at 50% 80%, rgba(212,175,55,.08), transparent 30%);
+    pointer-events:none;
+}
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:30px;
+    background:
+      linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+      url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1800&q=80');
+    background-size:cover;
+    background-position:center;
+}
+
+.card{
+    max-width:850px;
+    background:rgba(0,0,0,.45);
+    backdrop-filter:blur(14px);
+    border:1px solid rgba(212,175,55,.45);
+    border-radius:35px;
+    padding:70px 45px;
+    box-shadow:0 0 40px rgba(212,175,55,.15);
+}
+
+.names{
+    font-family:'Cormorant Garamond',serif;
+    color:#d4af37;
+    font-size:4.5rem;
+    margin-bottom:20px;
+}
+
+.subtitle{
+    font-size:1.5rem;
+    margin-bottom:30px;
+    color:#f5f5f5;
+}
+
+.gold-line{
+    width:130px;
+    height:2px;
+    background:#d4af37;
+    margin:30px auto;
+}
+
+.hero p{
+    font-size:1.3rem;
+    line-height:2;
+}
+
+section{
+    max-width:1000px;
+    margin:auto;
+    padding:90px 25px;
+    text-align:center;
+}
+
+.section-title{
+    color:#d4af37;
+    font-size:2.3rem;
+    margin-bottom:40px;
+}
+
+.box{
+    background:#111;
+    border:1px solid rgba(212,175,55,.35);
+    border-radius:30px;
+    padding:45px;
+    box-shadow:0 0 30px rgba(212,175,55,.08);
+}
+
+.box p{
+    margin:18px 0;
+    font-size:1.25rem;
+}
+
+.timer{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.time-box{
+    width:130px;
+    padding:25px;
+    border:1px solid rgba(212,175,55,.35);
+    border-radius:20px;
+}
+
+.time-box h3{
+    color:#d4af37;
+    font-size:2.4rem;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    background:#1a1a1a;
+    color:#fff;
+    border:1px solid rgba(212,175,55,.35);
+    border-radius:15px;
+    padding:18px;
+    margin:15px 0;
+    font-size:1rem;
+}
+
+button{
+    background:#d4af37;
+    color:#000;
+    border:none;
+    border-radius:50px;
+    padding:18px 45px;
+    font-size:1rem;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+footer{
+    text-align:center;
+    color:#d4af37;
+    padding:50px 20px;
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+    <div class="card">
+
+        <div class="names">
+            جوليان ♥ جورجينا
+        </div>
+
+        <div class="subtitle">
+            دعوة لحضور حفل زفافنا
+        </div>
+
+        <div class="gold-line"></div>
+
+        <p>
+            بكل حب وفرح نتشرف بدعوتكم
+            لمشاركتنا أجمل لحظات حياتنا
+            والاحتفال معنا بيوم زفافنا المميز
+        </p>
+
+        <div class="gold-line"></div>
+
+        <p>
+            الجمعة 17 يوليو 2026
+        </p>
+
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">تفاصيل الحفل</h2>
+
+    <div class="box">
+        <p>📅 الجمعة، 17 يوليو 2026</p>
+        <p>📍 قاعة نيسان</p>
+        <p>✨ حضوركم يضيف إلى فرحتنا سعادة لا تُنسى</p>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">العد التنازلي</h2>
+
+    <div class="box">
+        <div class="timer">
+            <div class="time-box">
+                <h3 id="days">00</h3>
+                <span>يوم</span>
+            </div>
+
+            <div class="time-box">
+                <h3 id="hours">00</h3>
+                <span>ساعة</span>
+            </div>
+
+            <div class="time-box">
+                <h3 id="minutes">00</h3>
+                <span>دقيقة</span>
+            </div>
+
+            <div class="time-box">
+                <h3 id="seconds">00</h3>
+                <span>ثانية</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">تأكيد الحضور</h2>
+
+    <div class="box">
+        <form>
+            <input type="text" placeholder="الاسم الكامل" required>
+
+            <select required>
+                <option value="">هل ستتمكن من الحضور؟</option>
+                <option>نعم، سأكون سعيداً بالحضور</option>
+                <option>للأسف، لن أتمكن من الحضور</option>
+            </select>
+
+            <input type="number" placeholder="عدد المرافقين">
+
+            <textarea rows="4" placeholder="رسالة للعروسين (اختياري)"></textarea>
+
+            <button type="submit">
+                إرسال تأكيد الحضور
+            </button>
+        </form>
+    </div>
+</section>
+
+<footer>
+    ♥ جوليان وجورجينا ♥
+</footer>
+
+<script>
+const weddingDate = new Date("July 17, 2026 00:00:00").getTime();
+
+setInterval(() => {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    document.getElementById("days").innerHTML =
+        Math.floor(distance / (1000 * 60 * 60 * 24));
+
+    document.getElementById("hours").innerHTML =
+        Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+    document.getElementById("minutes").innerHTML =
+        Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+    document.getElementById("seconds").innerHTML =
+        Math.floor((distance % (1000 * 60)) / 1000);
+}, 1000);
+</script>
+
+</body>
+</html>
+```
